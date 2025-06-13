@@ -1,22 +1,22 @@
-import asyncio
-import json
 import os
 from aiogram import Bot, Dispatcher, F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram.fsm.context import FSMContext
+from aiogram.types import Message
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.fsm.state import StatesGroup, State
+from aiogram import Router
+from aiogram.utils.markdown import hbold
 from dotenv import load_dotenv
 
 load_dotenv()
-API_TOKEN = os.getenv("API_TOKEN")
+
+API_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID"))
 
 bot = Bot(token=API_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=MemoryStorage())
+router = Router()
+dp.include_router(router)
 
 with open("questions.json", "r", encoding="utf-8") as f:
     questions = json.load(f)

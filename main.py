@@ -100,19 +100,17 @@ async def show_result(message: Message, state: FSMContext):
 
     result = results[result_type]
     
-await message.answer(
-    f"<b>🧭 Твой Путь завершён!</b>\n\n"
-    f"<b>{result['title']}</b>\n\n"
-    f"{result['description']}"
-)
+    await message.answer(
+        f"<b>🧭 Твой Путь завершён!</b>\n\n"
+        f"<b>{result['title']}</b>\n\n"
+        f"{result['description']}"
+    )
 
     user = message.from_user
     await bot.send_message(
         ADMIN_ID,
-        f"🧙‍♂️ <b>Новый результат:</b>
-"
-        f"<b>{result_type}</b> — {result['title']}
-"
+        f"🧙‍♂️ <b>Новый результат:</b>\n"
+        f"<b>{result_type}</b> — {result['title']}\n"
         f"👤 @{user.username or user.full_name} ({user.id})"
     )
 

@@ -1,9 +1,9 @@
 services:
   - type: worker
-    name: morrowind-mbti-bot
+    name: mbti-morrowind-bot
     runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11
+      - key: BOT_TOKEN
+      - key: ADMIN_ID

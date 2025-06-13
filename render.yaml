@@ -4,4 +4,4 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     envVars:
-        fromGroup: MBTI-Morrowind-Bot
+      - fromGroup: MBTI-Morrowind-Bot

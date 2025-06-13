@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment variables
+.env
+
+# macOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# Railway local config
+.railway/
+
+# Python packaging
+*.egg
+*.egg-info/
+dist/
+build/
+
+# VSCode project files
+.vscode/

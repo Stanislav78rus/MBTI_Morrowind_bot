@@ -79,13 +79,13 @@ async def handle_answer(callback, state: FSMContext):
     await state.update_data(answers=answers)
 
     if current + 1 >= len(questions):
-        await show_result(callback.message, state)
+        await show_result(callback.message, state, callback.from_user)
     else:
         await state.update_data(current=current + 1)
         await send_question(callback.message, state)
     await callback.answer()
 
-async def show_result(message: Message, state: FSMContext):
+async def show_result(message: Message, state: FSMContext, user):
     data = await state.get_data()
     answers = data["answers"]
     scores = {"IE": 0, "SN": 0, "TF": 0, "JP": 0}
@@ -108,11 +108,11 @@ async def show_result(message: Message, state: FSMContext):
 
     user = message.from_user
     await bot.send_message(
-        ADMIN_ID,
-        f"🧙‍♂️ <b>Новый результат:</b>\n"
-        f"<b>{result_type}</b> — {result['title']}\n"
-        f"👤 @{user.username or user.full_name} ({user.id})"
-    )
+    ADMIN_ID,
+    f"🧙‍♂️ <b>Новый результат:</b>\n"
+    f"<b>{result_type}</b> — {result['title']}\n"
+    f"👤 @{user.username or user.full_name} ({user.id})"
+)
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔁 Снова испытать себя", callback_data="start_quiz")]

@@ -2,7 +2,7 @@ services:
   - type: worker
     name: mbti-morrowind-bot
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --only-binary=:all: -r requirements.txt
     startCommand: python main.py
     envVars:
       - fromGroup: MBTI-Morrowind-Bot

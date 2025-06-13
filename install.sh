@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# Установить зависимости вручную с колесами
+echo "🔧 Installing packages with prebuilt binaries..."
+
+# Установим всё необходимое, избегая сборки pydantic-core
 pip install --upgrade pip setuptools wheel
-pip install --only-binary pydantic-core pydantic==2.5.3
+
+# Установим Pydantic и его зависимости строго через бинарные колёса
+pip install --only-binary :all: pydantic==2.5.3
+
+# Затем ставим всё остальное
 pip install -r requirements.txt

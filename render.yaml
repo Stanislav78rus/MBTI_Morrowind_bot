@@ -2,7 +2,15 @@ services:
   - type: worker
     name: mbti-morrowind-bot
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      curl -sSL https://install.python-poetry.org | python3 -
+      pip install -r requirements.txt
     startCommand: python main.py
     envVars:
-      - fromGroup: MBTI-Morrowind-Bot
+      - key: BOT_TOKEN
+        fromGroup: MBTI
+      - key: ADMIN_ID
+        fromGroup: MBTI
+    build:
+      env:
+        PYTHON_VERSION: 3.11.9

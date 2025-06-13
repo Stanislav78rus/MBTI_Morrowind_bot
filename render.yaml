@@ -6,3 +6,4 @@ services:
     startCommand: python main.py
     envVars:
       - fromGroup: MBTI-Morrowind-Bot
+    pythonVersion: 3.11

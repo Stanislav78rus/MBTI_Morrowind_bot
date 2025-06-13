@@ -40,9 +40,11 @@ async def start(message: Message, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔮 Начать путь Судьбы", callback_data="start_quiz")]
     ])
-    await message.answer("Ты пробудился у причала Сейда Нин. Стражник молчит, но взгляд его ясен: твой путь начинается.
-
-Желаешь узнать, кто ты есть на самом деле?", reply_markup=keyboard)
+await message.answer(
+    "Ты пробудился у причала Сейда Нин. Стражник молчит, но взгляд его ясен: твой путь начинается.\n\n"
+    "Желаешь узнать, кто ты есть на самом деле?",
+    reply_markup=keyboard
+)
 
 @dp.callback_query(F.data == "start_quiz")
 async def start_quiz(callback, state: FSMContext):

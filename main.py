@@ -1,3 +1,9 @@
+import json
+import asyncio
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import State, StatesGroup
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 import os
 from aiogram import Bot, Dispatcher, F
 from aiogram.client.default import DefaultBotProperties
@@ -52,16 +58,12 @@ async def send_question(message: Message, state: FSMContext):
     for i, opt in enumerate(q["options"], 1):
         keyboard.button(text=str(i), callback_data=f"answer_{i-1}")
     keyboard.adjust(len(q["options"]))
-    await message.edit_text(
-        f"<b>Вопрос {current+1} из {len(questions)}</b>
-
-{q['text']}
-
-" +
-        "
-".join([f"<b>{i+1}.</b> {opt['text']}" for i, opt in enumerate(q['options'])]),
-        reply_markup=keyboard.as_markup()
+    text = (
+        f"<b>Вопрос {current+1} из {len(questions)}</b>\n\n"
+        f"{q['text']}\n\n" +
+        "\n".join([f"<b>{i+1}.</b> {opt['text']}" for i, opt in enumerate(q['options'])])
     )
+    await message.edit_text(text, reply_markup=keyboard.as_markup())
 
 @dp.callback_query(F.data.startswith("answer_"))
 async def handle_answer(callback, state: FSMContext):

@@ -1,6 +1,6 @@
 services:
   - type: worker
-    name: morrowind-mbti-bot
+    name: MBTI_Morrowind_bot
     runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py

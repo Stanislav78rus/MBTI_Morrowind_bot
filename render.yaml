@@ -1,5 +1,5 @@
 services:
-  - type: web
+  - type: worker
     name: morrowind-mbti-bot
     runtime: python
     buildCommand: pip install -r requirements.txt

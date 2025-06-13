@@ -99,15 +99,12 @@ async def show_result(message: Message, state: FSMContext):
     result_type += "J" if scores["JP"] < 0 else "P"
 
     result = results[result_type]
-    await message.answer(
-        f"<b>🧭 Твой Путь завершён!</b>
-
-"
-        f"<b>{result['title']}</b>
-
-"
-        f"{result['description']}"
-    )
+    
+await message.answer(
+    f"<b>🧭 Твой Путь завершён!</b>\n\n"
+    f"<b>{result['title']}</b>\n\n"
+    f"{result['description']}"
+)
 
     user = message.from_user
     await bot.send_message(

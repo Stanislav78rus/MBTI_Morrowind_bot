@@ -1,8 +1,14 @@
 services:
   - type: worker
     name: mbti-morrowind-bot
-    runtime: python
-    buildCommand: ./install.sh
-    startCommand: python main.py
     envVars:
-      - fromGroup: MBTI-Morrowind-Bot
+      - key: BOT_TOKEN
+        fromService:
+          name: global
+          key: BOT_TOKEN
+      - key: ADMIN_ID
+        fromService:
+          name: global
+          key: ADMIN_ID
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py

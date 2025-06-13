@@ -5,5 +5,4 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
     envVars:
-      - key: BOT_TOKEN
-      - key: ADMIN_ID
+      - fromGroup: MBTI-Morrowind-Bot
